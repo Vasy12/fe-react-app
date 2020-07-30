@@ -4,30 +4,63 @@ import Aloha from './components/Aloha';
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      userName: 'React.js',
-      isGreetingMode: true,
-      isVisible: false,
+      guests: [
+        {
+          id: 1,
+          firstName: 'Test',
+          lastName: 'Testovich',
+        },
+        {
+          id: 85684,
+          firstName: 'Maria',
+          lastName: 'Testovna',
+        },
+        {
+          id: 37126365,
+          firstName: 'Misha',
+          lastName: 'Ivanov',
+        },
+        {
+          id: 4,
+          firstName: 'Fred',
+          lastName: 'Fredovich',
+        },
+      ],
     };
+
+    this.switchSortDir = false;
   }
 
-  switchMode = () => {
-    const { isGreetingMode, isVisible } = this.state;
-    this.setState({
-      isGreetingMode: !isGreetingMode,
-      isVisible: !isVisible,
+  sortGuests = () => {
+    const { guests } = this.state;
+
+    const sortedGuests = JSON.parse(JSON.stringify(guests)).sort((a, b) => {
+      if (a.firstName > b.firstName) {
+        return this.switchSortDir ? -1 : 1;
+      }
+      if (a.firstName < b.firstName) {
+        return this.switchSortDir ? 1 : -1;
+      }
+      return 0;
     });
+
+    this.setState({
+      guests: sortedGuests,
+    });
+    this.switchSortDir = !this.switchSortDir;
   };
 
-  render() {
-    const { userName, isGreetingMode, isVisible } = this.state;
+  mapGuests = () =>
+    this.state.guests.map(({ id, firstName, lastName }) => (
+      <Aloha key={id} name={`${id} ${firstName} ${lastName}`} />
+    ));
 
+  render() {
     return (
       <>
-        {isVisible && <h1>Visible</h1>}
-        <button onClick={this.switchMode}>Change MODE</button>
-        <Aloha name={userName} isGreeting={isGreetingMode} />
+        <button onClick={this.sortGuests}>SORT</button>
+        <div>{this.mapGuests()}</div>
       </>
     );
   }
