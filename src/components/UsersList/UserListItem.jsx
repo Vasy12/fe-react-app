@@ -8,7 +8,7 @@ const UserListItem = props => {
   } = props;
 
   const styles = {
-    backgroundColor: isSelected ? 'rgba(0,0,0,0.5)' : 'initial',
+    backgroundColor: isSelected ? 'rgba(0,0,0,0.3)' : 'initial',
   };
 
   return (
