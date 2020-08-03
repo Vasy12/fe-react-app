@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Stopwatch from './components/Stopwatch';
+import Aloha from './components/Aloha';
+import LoginForm from './components/LoginForm';
 
 const App = () => {
-  const [isVisible, setIsVisible] = useState(true);
   return (
     <>
-      <button
-        onClick={() => {
-          setIsVisible(!isVisible);
-        }}
-      >
-        switch
-      </button>
-      {isVisible && <Stopwatch />}
+      <LoginForm />
     </>
   );
 };
