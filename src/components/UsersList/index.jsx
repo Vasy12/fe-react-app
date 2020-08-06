@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import UserListItem from './UserListItem';
+import React from 'react';
+import UserListItem, { userProp } from './UserListItem';
+import PropTypes from 'prop-types';
 
 const UsersList = props => {
   const { users, setUsers } = props;
@@ -17,13 +18,18 @@ const UsersList = props => {
         key={user.id}
         user={user}
         onSelect={selectUserHandler}
-        isSelected={user.isSelected}
+        isSelected={user.isSelected ?? false}
       />
     );
   };
 
   return <ul>{users.map(mapUser)}</ul>;
 };
+
+UsersList.protoTypes = {
+  users: PropTypes.arrayOf(userProp).isRequired,
+};
+
 // Parent => Child = props
 // Child => Parent = callback
 export default UsersList;

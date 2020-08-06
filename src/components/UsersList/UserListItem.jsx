@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const UserListItem = props => {
   const {
@@ -19,6 +20,22 @@ const UserListItem = props => {
       <button onClick={onSelect}>SELECT ME</button>
     </li>
   );
+};
+
+export const userProp = PropTypes.shape({
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  name: PropTypes.string.isRequired,
+  surname: PropTypes.string.isRequired,
+});
+
+UserListItem.propTypes = {
+  onSelect: PropTypes.func.isRequired,
+  user: userProp.isRequired,
+  isSelected: PropTypes.bool,
+};
+
+UserListItem.defaultProps = {
+  isSelected: false,
 };
 
 export default UserListItem;

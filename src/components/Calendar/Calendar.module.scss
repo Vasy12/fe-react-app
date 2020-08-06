@@ -1,0 +1,9 @@
+@import './../../common/styles/vars';
+@import './../../common/styles/templates';
+
+.container {
+  @extend %flex-center;
+
+  @media screen and (min-width: $lg) {
+  }
+}

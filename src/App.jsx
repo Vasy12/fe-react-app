@@ -1,12 +1,17 @@
 import React from 'react';
-import Stopwatch from './components/Stopwatch';
-import Aloha from './components/Aloha';
-import LoginForm from './components/LoginForm';
+import UsersList from './components/UsersList';
+import Calendar from './components/Calendar';
 
 const App = () => {
   return (
     <>
-      <LoginForm />
+      <Calendar />
+      <UsersList
+        users={[
+          { id: 1, name: 'Test', surname: 'Testovich' },
+          { id: 2, name: 'Test2', surname: 'JHGsdf' },
+        ]}
+      />
     </>
   );
 };
