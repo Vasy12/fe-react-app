@@ -1,19 +1,8 @@
 import React from 'react';
-import UsersList from './components/UsersList';
-import Calendar from './components/Calendar';
+import UsersLoader from './components/UsersLoader';
 
 const App = () => {
-  return (
-    <>
-      <Calendar />
-      <UsersList
-        users={[
-          { id: 1, name: 'Test', surname: 'Testovich' },
-          { id: 2, name: 'Test2', surname: 'JHGsdf' },
-        ]}
-      />
-    </>
-  );
+  return <UsersLoader />;
 };
 
 export default App;
