@@ -50,7 +50,7 @@ class Slide extends Component {
       this.load();
     }
 
-    if (this.props.src !== prevProps.src) {
+    if (src !== prevProps.src) {
       this.setState({
         isLoaded: false,
         error: null,
