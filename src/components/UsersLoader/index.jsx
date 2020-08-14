@@ -17,7 +17,6 @@ class UsersLoader extends Component {
     const { currentPage } = this.state;
     getUsers({
       page: currentPage,
-      results: 20,
     })
       .then(data => {
         this.setState({

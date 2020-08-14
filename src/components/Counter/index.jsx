@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 class Counter extends Component {
@@ -27,13 +28,15 @@ class Counter extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.value !== nextState.value;
+    return !(
+      _.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)
+    );
   }
 
   render() {
     console.log('COUNTER RENDER');
-
     const { value } = this.state;
+    const { step } = this.props;
     const containerStyles = {
       display: 'flex',
       alignItems: 'center',
@@ -45,10 +48,20 @@ class Counter extends Component {
     };
     return (
       <article style={containerStyles}>
-        <h1>{value}</h1>
+        <h1>COUNT: {value}</h1>
+        <h2>STEP: {step}</h2>
         <div>
           <button onClick={this.decrement}>-</button>
           <button onClick={this.increment}>+</button>
+          <button
+            onClick={() => {
+              this.setState({
+                value,
+              });
+            }}
+          >
+            set same value
+          </button>
         </div>
       </article>
     );

@@ -1,24 +1,40 @@
-import { BASE_URL, API_KEY } from './../configs/api.js';
+import config from './../configs';
 import queryString from 'query-string';
+import _ from 'lodash';
+
+const {
+  api: {
+    seed,
+    baseUrl,
+    user: { fields: userFields, allowedParams: getUserParams },
+  },
+} = config;
 
 /**
  *
- * @param {object} [query]
- * @param {number} [query.page]
- * @param {number} [query.results]
- * @param {string} [query.seed]
- * @param {Array<string>} [query.inc]
- * @returns {Promise<object>}
+ * @param {object} [options]
+ * @param {string} [options.seed]
+ * @param {number} [options.page]
+ * @param {number} [options.results]
+ * @param {Array<string>} [options.inc]
+ * @returns {Promise<any>}
  */
-export const getUsers = ({
-  seed = API_KEY,
-  inc = ['id', 'name', 'email', 'picture'],
-  ...rest
-} = {}) => {
-  return fetch(
-    `${BASE_URL}?${queryString.stringify(
-      { seed, inc, ...rest },
-      { arrayFormat: 'comma' }
-    )}`
-  ).then(res => res.json());
+export const getUsers = options => {
+  const defaultOptions = {
+    page: 1,
+    seed,
+    results: 20,
+    inc: userFields,
+  };
+
+  const finalOptions = {
+    ...defaultOptions,
+    ..._.pick(options, getUserParams),
+  };
+
+  const queryParamsStr = queryString.stringify(finalOptions, {
+    arrayFormat: 'comma',
+  });
+
+  return fetch(`${baseUrl}?${queryParamsStr}`).then(res => res.json());
 };
