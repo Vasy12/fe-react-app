@@ -1,8 +1,8 @@
 import React from 'react';
-import Chat from './components/Chat';
+import HyperlinksParser from './components/HyperlinksParser';
 
 const App = () => {
-  return <Chat />;
+  return <HyperlinksParser />;
 };
 
 export default App;
