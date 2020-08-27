@@ -1,8 +1,8 @@
 import React from 'react';
-import HyperlinksParser from './components/HyperlinksParser';
+import Counter from './components/FuncCounter';
 
-const App = () => {
-  return <HyperlinksParser />;
-};
+function App() {
+  return <Counter />;
+}
 
 export default App;
