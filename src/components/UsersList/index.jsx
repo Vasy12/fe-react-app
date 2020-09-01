@@ -1,18 +1,14 @@
 import React from 'react';
-
-const userItemStyle = {
-  margin: '10px',
-  border: '2px solid red',
-};
-
+import UserCard from '../UserCard/UserCard';
+import styles from './UserList.module.scss';
 function UsersList(props) {
   const { users } = props;
 
   return (
-    <ol>
+    <ol className={styles.container}>
       {users.map(u => (
-        <li style={userItemStyle} key={u.email}>
-          {JSON.stringify(u, null, '\t')}
+        <li key={u.email}>
+          <UserCard {...u} />
         </li>
       ))}
     </ol>

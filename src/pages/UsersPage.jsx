@@ -9,7 +9,7 @@ function UsersPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const getData = useCallback(
-    () => getUsers({ page: currentPage, results: 200 }),
+    () => getUsers({ page: currentPage }).then(data => data.results),
     [currentPage]
   );
 
@@ -33,11 +33,7 @@ function UsersPage() {
       </button>
       <button>{currentPage}</button>
       <button onClick={goNextPage}>next page</button>
-      {isFetching ? (
-        <Spinner />
-      ) : (
-        <UsersList users={data && !error ? data.results ?? [] : []} />
-      )}
+      {isFetching ? <Spinner /> : <UsersList users={data ?? []} />}
     </>
   );
 }

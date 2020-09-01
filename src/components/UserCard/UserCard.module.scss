@@ -1,0 +1,67 @@
+$card-width: 100px;
+$card_height: 100px;
+.container {
+  width: $card-width;
+  height: $card_height;
+  perspective: 1000px;
+  margin: 10px;
+
+  .innerWrapperFlip {
+    transform: rotateY(180deg);
+  }
+
+  .innerWrapper {
+    position: relative;
+    width: inherit;
+    height: inherit;
+
+    // animation
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+
+    & > * {
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      backface-visibility: hidden;
+      button {
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        z-index: 10000;
+      }
+    }
+
+    .front {
+      background-color: orange;
+    }
+
+    .back {
+      z-index: 1;
+      background-color: mediumpurple;
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+.imageWrapper {
+  overflow: hidden;
+  width: $card-width;
+  height: $card_height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .initials {
+    color: white;
+    font-size: 60px;
+    text-shadow: 0 0 2px black;
+  }
+
+  & > img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    object-position: top;
+  }
+}
