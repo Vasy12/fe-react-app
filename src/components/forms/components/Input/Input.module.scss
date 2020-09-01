@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+.label {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+}
+.field {
+  border: 20px solid;
+}
+
+.fieldError {
+  border-color: red;
+}
+
+.fieldValid {
+  border-color: green;
+}
+
+.error {
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  right: 0;
+  padding: 4px;
+  overflow: hidden;
+  z-index: 10;
+  box-sizing: border-box;
+  border: 2px solid red;
+  top: calc(100% + 2px);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}

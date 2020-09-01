@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import { withMouse, withUser } from '../HOCs';
+import withTheme from '../HOCs/withTheme';
 
 class Counter extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class Counter extends Component {
   render() {
     console.log('COUNTER RENDER');
     const { value } = this.state;
-    const { step } = this.props;
+    const { step, mouse } = this.props;
     const containerStyles = {
       display: 'flex',
       alignItems: 'center',
@@ -76,4 +78,4 @@ Counter.defaultProps = {
   step: 1,
 };
 
-export default Counter;
+export default withUser(withTheme(withMouse(Counter)));
